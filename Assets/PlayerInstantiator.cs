@@ -14,6 +14,14 @@ public class PlayerInstantiator : MonoBehaviour {
 	void Update () {
 	
 	}
+	
+	void OnServerInitialized()
+	{
+		GameObject newPlayerCharacter = (GameObject) Network.Instantiate(PlayerPrefab, new Vector3(0,2,2), Quaternion.identity, 0);
+        newPlayerCharacter.GetComponent<FPSInputController>().enabled = true;
+        newPlayerCharacter.GetComponent<MouseLook>().enabled = true;
+        GameObject.Find("Player Camera").GetComponent<SmoothFollow>().target = newPlayerCharacter.transform;	
+	}
 
     void OnConnectedToServer()
     {
