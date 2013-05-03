@@ -37,11 +37,10 @@ namespace UnityProject {
 		
 		void OnGUI()
 		{
-			GUI.Box(new Rect(10 ,10,500	,500), "Server Menu");
-			
 			if(!serverRunning)
 			{
-			
+			GUI.Box(new Rect(10 ,10,500	,500), "Server Menu");
+		
 			if(GUI.Button(new Rect(200,100,150,50),"Connect to Server"))
 			{
 				MasterServer.ClearHostList();
@@ -57,7 +56,7 @@ namespace UnityProject {
 			}
 			else
 			{
-				if(GUI.Button(new Rect(200,100,150,50),"Logout to Server"))
+				if(GUI.Button(new Rect(10,10,150,50),"Logout to Server"))
 				{
 					Network.Disconnect();	
 				}
@@ -74,7 +73,8 @@ namespace UnityProject {
 		
 		void OnConnectedToServer()
 		{
-			Debug.Log ("You are connected to a server");	
+			Debug.Log ("You are connected to a server");
+			serverRunning = true;
 		}
 		
 		void OnDisconnectedFromServer()
