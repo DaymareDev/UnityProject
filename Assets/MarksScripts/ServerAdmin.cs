@@ -88,5 +88,11 @@ namespace UnityProject {
 			Debug.Log ("Another player has connected");	
 		}
 		
+		void OnPlayerDisconnected(NetworkPlayer player)
+		{
+			Debug.Log("The other player has disconnected");
+			////need to run the clean up here
+		}
+		
 	}
 }
