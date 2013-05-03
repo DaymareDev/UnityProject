@@ -1,9 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/MarksScripts/MasterServer.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/MarksScripts/ServerAdmin.cs">
     <Files>
-      <File FileName="../../../HackAndSlash/Assets/Scripts/EnemyAi.cs" Line="4" Column="21" />
-      <File FileName="Assets/MarksScripts/MasterServer.cs" Line="34" Column="1" />
+      <File FileName="Assets/MarksScripts/ServerAdmin.cs" Line="36" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
