@@ -18,11 +18,11 @@ namespace UnityProject {
 		}
 		
 		// Update is called once per frame
-		void Update () {
-		
-			if(MasterServer.PollHostList().Length != 0)
-			{
-				HostData[] hostData = MasterServer.PollHostList();
+		void Update () 
+        {
+		    HostData[] hostData = MasterServer.PollHostList();
+            if(hostData != null && hostData.Length > 0)
+            {
 				int i = 0;
 				while (i < hostData.Length)
 				{
