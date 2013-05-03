@@ -83,5 +83,10 @@ namespace UnityProject {
 			Debug.Log("Disconnecting from the server");
 		}
 		
+		void OnPlayerConnected(NetworkPlayer player)
+		{
+			Debug.Log ("Another player has connected");	
+		}
+		
 	}
 }
