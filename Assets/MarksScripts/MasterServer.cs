@@ -3,9 +3,10 @@ using System.Collections;
 
 public class MasterServer : MonoBehaviour {
 	
-	private string _ip;
-	private int _port;
-	private string _serverName;
+	public string ip;
+	public int port;
+	public string serverName;
+	public string gameTypeName;
 	
 	// Use this for initialization
 	void Start () {
@@ -21,8 +22,12 @@ public class MasterServer : MonoBehaviour {
 	{
 		GUI.Box(new Rect(10 ,10,500	,500), "Server Menu");
 		GUI.Button(new Rect(200,100,150,50),"Connect to Server");
-		GUI.TextField(new Rect(200,250,50,20),"Port");
-		GUI.Button(new Rect(200,300,150,50),"Start Server");
+		
+		if(GUI.Button(new Rect(200,300,150,50),"Start Server"))
+		{
+			Network.InitializeServer(10,25002, !Network.HavePublicAddress()); //// if we need NAT it will use it.
+			MasterServer.RegisterHost (gameTypeName, serverName, "Test Unity Network");
+		}
 		
 	}
 }
