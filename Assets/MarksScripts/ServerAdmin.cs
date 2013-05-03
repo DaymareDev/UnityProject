@@ -30,6 +30,8 @@ namespace UnityProject {
 					i++;
 				}
 				MasterServer.ClearHostList();
+				
+				Network.Connect(hostData[0]);// connect to the first server in the list
 			}
 		}
 		
@@ -54,7 +56,12 @@ namespace UnityProject {
 				}
 			}
 			else
-				GUI.Label(new Rect(200,100,200,50),"Server started and running");
+			{
+				if(GUI.Button(new Rect(200,100,150,50),"Logout to Server"))
+				{
+					Network.Disconnect();	
+				}
+			}
 				
 			
 		}
@@ -68,6 +75,12 @@ namespace UnityProject {
 		void OnConnectedToServer()
 		{
 			Debug.Log ("You are connected to a server");	
+		}
+		
+		void OnDisconnectedFromServer()
+		{
+			serverRunning = false;	
+			Debug.Log("Disconnecting from the server");
 		}
 		
 	}
