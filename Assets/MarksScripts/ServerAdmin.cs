@@ -18,12 +18,28 @@ namespace UnityProject {
 		// Update is called once per frame
 		void Update () {
 		
+			if(MasterServer.PollHostList().Length != 0)
+			{
+				HostData[] hostData = MasterServer.PollHostList();
+				int i = 0;
+				while (i < hostData.Length)
+				{
+					Debug.Log("Game Name: " + hostData[i].gameName);
+					i++;
+				}
+				MasterServer.ClearHostList();
+			}
 		}
 		
 		void OnGUI()
 		{
 			GUI.Box(new Rect(10 ,10,500	,500), "Server Menu");
-			GUI.Button(new Rect(200,100,150,50),"Connect to Server");
+			
+			if(GUI.Button(new Rect(200,100,150,50),"Connect to Server"))
+			{
+				MasterServer.ClearHostList();
+				MasterServer.RequestHostList(gameTypeName);
+			}
 			
 			if(GUI.Button(new Rect(200,300,150,50),"Start Server"))
 			{
@@ -32,5 +48,6 @@ namespace UnityProject {
 			}
 			
 		}
+		
 	}
 }
