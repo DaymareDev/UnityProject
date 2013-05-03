@@ -1,12 +1,12 @@
 using UnityEngine;
 using System.Collections;
 
-public class MasterServer : MonoBehaviour {
+public class ServerAdmin : MonoBehaviour {
 	
 	public string ip;
 	public int port;
-	public string serverName;
-	public string gameTypeName;
+	public string serverName = "Unity Test";
+	public string gameTypeName = "MMTest123";
 	
 	// Use this for initialization
 	void Start () {
