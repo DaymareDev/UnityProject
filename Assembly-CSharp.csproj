@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\MarksScripts\ServerAdmin.cs" />
+     <Compile Include="Assets\MarksScripts\ThrowBall.cs" />
      <Compile Include="Assets\PlayerInitializationScript.cs" />
      <Compile Include="Assets\PlayerInstantiator.cs" />
      <Compile Include="Assets\ServerPlayerInstaniator.cs" />
