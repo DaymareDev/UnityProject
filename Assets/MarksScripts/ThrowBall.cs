@@ -52,12 +52,19 @@ namespace UnityProject{
 			
 			if(Input.GetKeyDown(KeyCode.R))
 			{
-				ResetBall();	
+				ResetBall();
 			}
+		}
+		
+		void ResetHoldingBall()
+		{
+			ball.transform.parent = null;
+			_holdingBall = false;	
 		}
 			
 			void ResetBall()
 			{
+				BroadcastMessage("ResetHoldingBall");
 				ball.transform.position = _ballPosition;
 				ball.rigidbody.velocity = Vector3.zero;
 			}
