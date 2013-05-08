@@ -8,6 +8,7 @@ namespace UnityProject{
 		private bool _holdingBall = false;
 		public GameObject ball;
 		private Vector3 _ballPosition;
+		public float ballForce;
 		
 		void Start()
 		{
@@ -27,8 +28,6 @@ namespace UnityProject{
 		[RPC]
 		void HoldBall()
 		{
-			
-			
 			Debug.Log ("I am holding the ball");
 			ball.rigidbody.velocity = Vector3.zero;
 			ball.collider.enabled = false;
@@ -61,7 +60,8 @@ namespace UnityProject{
 			ball.transform.parent = null;
 			ball.collider.enabled = true;
 			ball.rigidbody.useGravity = true;
-			ball.rigidbody.AddForce(throwDirection * 1000);
+			
+			ball.rigidbody.AddForce(throwDirection * ballForce,ForceMode.Impulse);
 			_holdingBall = false;
 		}
 		
