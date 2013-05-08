@@ -65,6 +65,7 @@ namespace UnityProject{
 			
 			void ResetBall()
 			{
+				ball.rigidbody.useGravity = true;
 				BroadcastMessage("ResetHoldingBall");
 				ball.transform.position = _ballPosition;
 				ball.rigidbody.velocity = Vector3.zero;
