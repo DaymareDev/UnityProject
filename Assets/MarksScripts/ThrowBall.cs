@@ -7,10 +7,12 @@ namespace UnityProject{
 	
 		private bool _holdingBall = false;
 		public GameObject ball;
+		private Vector3 _ballPosition;
 		
 		void OnAwake()
 		{
-			ball = null;	
+			ball = GameObject.Find("Ball");	
+			_ballPosition = ball.transform.position;
 		}
 		
 		 void OnControllerColliderHit(ControllerColliderHit obj)  
@@ -45,9 +47,20 @@ namespace UnityProject{
 					ball.rigidbody.useGravity = true;
 					ball.rigidbody.AddForce(throwDirection * 1000);
 				
-				ball = null;
 				_holdingBall = false;
 				}
+			
+			if(Input.GetKeyDown(KeyCode.R))
+			{
+				ResetBall();	
+			}
 		}
+			
+			void ResetBall()
+			{
+				ball.transform.position = _ballPosition;
+				ball.rigidbody.velocity = Vector3.zero;
+			}
 	}
 }
+
