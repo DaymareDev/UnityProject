@@ -26,6 +26,7 @@ namespace UnityProject{
 		
 		void HoldBall(GameObject obj)
 		{
+			Debug.Log ("I am holding the ball");
 			obj.collider.enabled = false;
 			obj.rigidbody.useGravity = false;
 			obj.transform.parent = this.transform;
