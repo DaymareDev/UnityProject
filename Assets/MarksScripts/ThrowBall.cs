@@ -20,44 +20,49 @@ namespace UnityProject{
 		
 			if(obj.gameObject.name == "Ball" && !_holdingBall)
 			{
-				HoldBall( obj.gameObject );	
+				networkView.RPC("HoldBall",RPCMode.All );	
 			}
 		}
 		
-		void HoldBall(GameObject obj)
+		[RPC]
+		void HoldBall()
 		{
+			
+			
 			Debug.Log ("I am holding the ball");
 			ball.rigidbody.velocity = Vector3.zero;
-			obj.collider.enabled = false;
-			obj.rigidbody.useGravity = false;
-			obj.transform.parent = this.transform;
-			obj.transform.localPosition = new Vector3(1,1,1);
+			ball.collider.enabled = false;
+			ball.rigidbody.useGravity = false;
+			ball.transform.parent = this.transform;
+			ball.transform.localPosition = new Vector3(1,1,1);
 			
 			_holdingBall = true;
 			
-			ball = obj;
 		}
 		
 		void Update()
 		{
-			
-			Vector3 throwDirection = this.transform.forward;
-			
 			if(_holdingBall)
 				if(Input.GetMouseButtonDown(0))
 				{
-					ball.transform.parent = null;
-					ball.collider.enabled = true;
-					ball.rigidbody.useGravity = true;
-					ball.rigidbody.AddForce(throwDirection * 1000);
-				
-				_holdingBall = false;
+					networkView.RPC("ThrowMyBall",RPCMode.All);
 				}
 			
 			if(Input.GetKeyDown(KeyCode.R))
 			{
 				ResetBall();
 			}
+		}
+		
+		[RPC]
+		void ThrowMyBall()
+		{
+			Vector3 throwDirection = this.transform.forward;
+			ball.transform.parent = null;
+			ball.collider.enabled = true;
+			ball.rigidbody.useGravity = true;
+			ball.rigidbody.AddForce(throwDirection * 1000);
+			_holdingBall = false;
 		}
 		
 		void ResetHoldingBall()
