@@ -27,6 +27,7 @@ namespace UnityProject{
 		void HoldBall(GameObject obj)
 		{
 			obj.rigidbody.useGravity = false;
+			obj.transform.collider.enabled = false;
 			obj.transform.parent = this.transform;
 			obj.transform.localPosition = new Vector3(1,1,1);
 			
@@ -46,6 +47,7 @@ namespace UnityProject{
 					ball.transform.parent = null;
 					ball.rigidbody.useGravity = true;
 					ball.rigidbody.AddForce(throwDirection * 1000);
+					ball.transform.collider.enabled = true;
 				
 				_holdingBall = false;
 				}
@@ -69,6 +71,7 @@ namespace UnityProject{
 				BroadcastMessage("ResetHoldingBall");
 				ball.transform.position = _ballPosition;
 				ball.rigidbody.velocity = Vector3.zero;
+				ball.collider.enabled = true;
 			}
 		
 	}
