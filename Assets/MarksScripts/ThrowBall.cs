@@ -26,8 +26,8 @@ namespace UnityProject{
 		
 		void HoldBall(GameObject obj)
 		{
+			obj.collider.enabled = false;
 			obj.rigidbody.useGravity = false;
-			obj.transform.collider.enabled = false;
 			obj.transform.parent = this.transform;
 			obj.transform.localPosition = new Vector3(1,1,1);
 			
@@ -45,9 +45,9 @@ namespace UnityProject{
 				if(Input.GetMouseButtonDown(0))
 				{
 					ball.transform.parent = null;
+					ball.collider.enabled = true;
 					ball.rigidbody.useGravity = true;
 					ball.rigidbody.AddForce(throwDirection * 1000);
-					ball.transform.collider.enabled = true;
 				
 				_holdingBall = false;
 				}
@@ -67,11 +67,11 @@ namespace UnityProject{
 			
 			void ResetBall()
 			{
+				ball.collider.enabled = true;
 				ball.rigidbody.useGravity = true;
 				BroadcastMessage("ResetHoldingBall");
 				ball.transform.position = _ballPosition;
 				ball.rigidbody.velocity = Vector3.zero;
-				ball.collider.enabled = true;
 			}
 		
 	}
