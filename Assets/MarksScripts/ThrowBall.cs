@@ -9,7 +9,7 @@ namespace UnityProject{
 		public GameObject ball;
 		private Vector3 _ballPosition;
 		
-		void OnAwake()
+		void Start()
 		{
 			ball = GameObject.Find("Ball");	
 			_ballPosition = ball.transform.position;
@@ -59,7 +59,8 @@ namespace UnityProject{
 		void ResetHoldingBall()
 		{
 			ball.transform.parent = null;
-			_holdingBall = false;	
+			_holdingBall = false;
+			Debug.Log ("The reset has been pressed!!!!!!!!!!!!!");
 		}
 			
 			void ResetBall()
@@ -68,6 +69,7 @@ namespace UnityProject{
 				ball.transform.position = _ballPosition;
 				ball.rigidbody.velocity = Vector3.zero;
 			}
+		
 	}
 }
 
