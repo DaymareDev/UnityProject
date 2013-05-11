@@ -9,20 +9,27 @@ namespace UnityProject{
 		public GameObject ball;
 		private Vector3 _ballPosition;
 		public float ballForce;
+		private SphereCollider ballDetecter;
+		private float ballTimer = 0;
 		
 		void Start()
 		{
+			ballDetecter = (SphereCollider) GetComponentInChildren<SphereCollider>();
 			ball = GameObject.Find("Ball");	
 			_ballPosition = ball.transform.position;
 		}
 		
-		 void OnControllerColliderHit(ControllerColliderHit obj)  
+		void OnControllerColliderHit(ControllerColliderHit obj)  
 		{
+			CheckWhatsHit(obj.gameObject);
+		}
 		
-			if(obj.gameObject.name == "Ball" && !_holdingBall)
+		public void CheckWhatsHit(GameObject obj)
+		{
+			if(ballTimer <= 0 && obj.name == "Ball" && !_holdingBall)
 			{
 				networkView.RPC("HoldBall",RPCMode.All );	
-			}
+			}	
 		}
 		
 		[RPC]
@@ -41,9 +48,13 @@ namespace UnityProject{
 		
 		void Update()
 		{
+			
+			ballTimer -= Time.deltaTime;
+			
 			if(_holdingBall)
 				if(Input.GetMouseButtonDown(0))
 				{
+					Debug.Log("i am throwing the ball");
 					networkView.RPC("ThrowMyBall",RPCMode.All);
 				}
 			
@@ -56,6 +67,8 @@ namespace UnityProject{
 		[RPC]
 		void ThrowMyBall()
 		{
+			ballTimer = 0.5f;
+			ball.GetComponent<SphereCollider>().enabled = true;
 			Vector3 throwDirection = this.transform.forward;
 			ball.transform.parent = null;
 			ball.collider.enabled = true;
